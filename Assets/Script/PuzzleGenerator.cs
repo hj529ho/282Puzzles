@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PuzzleGenerator : MonoBehaviour
 {
-    public void GenerateById(int id)
+    public Transform parent;
+    
+    public GameObject GenerateById(int id)
     {
         TextAsset asset = Resources.Load<TextAsset>($"Puzzle/puzzle{id}");
         string json = asset.text;
@@ -36,8 +38,9 @@ public class PuzzleGenerator : MonoBehaviour
         data.GridArray270 = Rotate(data.GridArray180,data.sizeX,data.sizeY);
         
         GameObject go = Resources.Load<GameObject>($"Prefab/puzzle{id}");
-        GameObject spawned = Instantiate(go);
+        GameObject spawned = Instantiate(go,parent);
         spawned.GetComponent<Puzzle>().data = data;
+        return go;
     }
 
     string[,] Rotate(string[,] arr,int sizeX, int sizeY)

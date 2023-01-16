@@ -131,6 +131,7 @@ public class Puzzle : MonoBehaviour
                             Debug.Log(y + ay);
                             _board.Grids[x + ax, y + ay].status = "V";
                             _selectedGrids.Enqueue(_board.Grids[x + ax, y + ay]);
+                            IsClear();
                         }
                     }
                 }
@@ -141,6 +142,23 @@ public class Puzzle : MonoBehaviour
             }
         }
     }
+
+    public void IsClear()
+    {
+        for (int i = 0; i < _board.Grids.GetLength(0); i++)
+        {
+            for (int j = 0; j < _board.Grids.GetLength(1); j++)
+            {
+                if (_board.Grids[i, j].status == "O")
+                {
+                    return;
+                }
+            }
+        }
+        _board.Clear();
+        Debug.Log("Clear!!");
+    }
+
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
