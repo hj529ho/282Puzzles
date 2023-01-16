@@ -7,7 +7,6 @@ public class Board : MonoBehaviour
 {
     // Start is called before the first frame update
     private PuzzleGenerator Generator;
-    public string[,] _board;
     public GameObject Grid;
     
     public Grid[,] Grids;
@@ -18,9 +17,9 @@ public class Board : MonoBehaviour
     void Start()
     {
         Generator = GetComponent<PuzzleGenerator>();
-        _board = LoadData("Data");
+        LoadData("Data");
     }
-    string[,] LoadData(string filename)
+   void LoadData(string filename)
     {
         TextAsset asset = Resources.Load<TextAsset>($"BoardData/{filename}");
         BoardData data = JsonUtility.FromJson<BoardData>(asset.text);
@@ -50,16 +49,11 @@ public class Board : MonoBehaviour
                 grid.status = data.board[i + j * x];
             }
         }
-
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).localPosition -= new Vector3(((float)x/2)-0.5f,((float)-y/2)+0.5f,0);
         }
-
-        // Debug.Log(board[6,6]);
-        return board;
     }
-    
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
