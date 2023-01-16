@@ -6,61 +6,63 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    private PuzzleGenerator Generator;
     public string[,] _board;
     public GameObject Grid;
-    int x;
-    int y;
-    public Puzzle Puzzle;
+    
+    public Grid[,] Grids;
+    public int x;
+
+    public int y;
+    // public Puzzle Puzzle;
     void Start()
     {
+        Generator = GetComponent<PuzzleGenerator>();
         _board = LoadData("Data");
-        GetComponent<RectTransform>();
-        Evaluate(Puzzle, 7, 9);
-        
     }
     string[,] LoadData(string filename)
     {
         TextAsset asset = Resources.Load<TextAsset>($"BoardData/{filename}");
         BoardData data = JsonUtility.FromJson<BoardData>(asset.text);
 
+        foreach (int id in data.puzzles)
+        {
+            Generator.GenerateById(id);
+        }
         string[] size =  data.size.Split('x');
 
         x = int.Parse(size[0]);
         y = int.Parse(size[1]);
         
         string[,] board = new string[x, y];
-        
+        Grids = new Grid[x, y];
         for (int i = 0; i < x; i++)
         {
             for (int j = 0; j < y; j++)
             {
-                board[i, j] = data.board[i+j*10];
+                board[i, j] = data.board[i+j*x];
                 GameObject go = Instantiate(Grid,transform);
-                go.GetComponent<RectTransform>().anchoredPosition = new Vector2(i*80,j*-80);
+                go.GetComponent<Transform>().localPosition = new Vector3(i,j*-1,0);
                 Grid grid = go.GetComponent<Grid>();
+                Grids[i, j] = grid;
                 grid.x = i;
                 grid.y = j;
-                grid.status = data.board[i + j * 10];
+                grid.status = data.board[i + j * x];
             }
         }
-        
-        Debug.Log(board[6,6]);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).localPosition -= new Vector3(((float)x/2)-0.5f,((float)-y/2)+0.5f,0);
+        }
+
+        // Debug.Log(board[6,6]);
         return board;
     }
-    public void Evaluate(Puzzle puzzle, int x, int y)
+    
+    public void OnDrawGizmos()
     {
-        //중간체크
-        switch (puzzle.rotate)
-        {
-            case Puzzle.Rotate._0:
-                break;
-            case Puzzle.Rotate._90:
-                break;
-            case Puzzle.Rotate._180:
-                break;
-            case Puzzle.Rotate._270:
-                break;
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position,new Vector3(x,y));
     }
 }

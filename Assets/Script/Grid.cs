@@ -13,7 +13,7 @@ public class Grid : MonoBehaviour
     {
         if (status == "X")
         {
-            GetComponent<Image>().color = Color.clear;
+            GetComponent<SpriteRenderer>().color = Color.clear;
         }
     }
 }
