@@ -11,13 +11,11 @@ public class Puzzle : MonoBehaviour
     public PuzzleData data = new PuzzleData();
     private RaycastHit _hitLayerMask;
     private RaycastHit _hit;
-    private Board _board;
     private Vector3 _zeroPos;
     private readonly Queue<Grid> _selectedGrids = new Queue<Grid>();
     public Rotate rotate = Rotate._0;
     private void Start()
     {
-        _board = GameObject.Find("GameObject").GetComponent<Board>();
         _zeroPos = transform.position;
     }
     void OnRightClick()
@@ -85,11 +83,11 @@ public class Puzzle : MonoBehaviour
                 {
                     if ((GetArray()[x, y] == "O" || GetArray()[x, y] == "C"))
                     {
-                        if (x + ax >= _board.x || x + ax < 0)
+                        if (x + ax >= Board.Instance.x || x + ax < 0)
                             return false;
-                        if (y + ay >= _board.y || y + ay < 0)
+                        if (y + ay >= Board.Instance.y || y + ay < 0)
                             return false;
-                        if (_board.Grids[x + ax, y + ay].status == "V" || _board.Grids[x + ax, y + ay].status == "X")
+                        if (Board.Instance.Grids[x + ax, y + ay].status == "V" || Board.Instance.Grids[x + ax, y + ay].status == "X")
                             return false;
                     }
                 }
@@ -129,12 +127,12 @@ public class Puzzle : MonoBehaviour
                             // x + ax
                             Debug.Log(x + ax);
                             Debug.Log(y + ay);
-                            _board.Grids[x + ax, y + ay].status = "V";
-                            _selectedGrids.Enqueue(_board.Grids[x + ax, y + ay]);
-                            IsClear();
+                            Board.Instance.Grids[x + ax, y + ay].status = "V";
+                            _selectedGrids.Enqueue(Board.Instance.Grids[x + ax, y + ay]);
                         }
                     }
                 }
+                Board.Instance.IsClear();
             }
             else
             {
@@ -143,21 +141,7 @@ public class Puzzle : MonoBehaviour
         }
     }
 
-    public void IsClear()
-    {
-        for (int i = 0; i < _board.Grids.GetLength(0); i++)
-        {
-            for (int j = 0; j < _board.Grids.GetLength(1); j++)
-            {
-                if (_board.Grids[i, j].status == "O")
-                {
-                    return;
-                }
-            }
-        }
-        _board.Clear();
-        Debug.Log("Clear!!");
-    }
+    
 
     public void OnDrawGizmos()
     {

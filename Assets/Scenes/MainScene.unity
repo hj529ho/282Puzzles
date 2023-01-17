@@ -396,6 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Grid: {fileID: 5142424285727613566, guid: 90e4029c4f6328a449dd5b0350d31654, type: 3}
+  x: 0
+  y: 0
 --- !u!4 &2064208600
 Transform:
   m_ObjectHideFlags: 0
