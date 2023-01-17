@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject UIParent;
+    
     public GameObject Main;
     public GameObject SelectLevel;
     public GameObject GameUI;
