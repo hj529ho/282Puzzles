@@ -121,7 +121,6 @@ crashlytics-build.properties
 *.otf
 *.db
 *.spm
-*.json
 *.dat
 *.graph
 *.info
