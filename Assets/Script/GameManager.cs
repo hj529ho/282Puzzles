@@ -40,7 +40,11 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         currentLevel++;
-        LevelSelect(currentLevel);
+        if (currentLevel < 16)
+        {
+            LevelSelect(currentLevel);
+        }
+
     }
     public void Reload()
     {
