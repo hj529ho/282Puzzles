@@ -18,6 +18,7 @@ public class Board : MonoBehaviour
     public GameObject Next;
     public int y;
     public Transform parent;
+    public ParticleSystem particle;
     void Awake()
     {
         if (null == instance)
@@ -112,12 +113,13 @@ public class Board : MonoBehaviour
         if (a == 0)
         {
             Clear();
-            Debug.Log("Clear!!");
+            particle.Play();
         }
 
     }
     public void Clear()
     {
+        Debug.Log($"Clear!! {GameManager.instance.currentLevel}");
         Next.SetActive(true);
     }
 

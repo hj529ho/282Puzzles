@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,23 @@ public class GameManager : MonoBehaviour
         //     button.enabled = false;
         // }
     }
+    
+    
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    
 
     public void GameStart()
     {
@@ -50,4 +68,37 @@ public class GameManager : MonoBehaviour
     {
         LevelSelect(currentLevel);
     }
+
+    public RectTransform ChapterUI;
+
+    private int CurrentChapter = 0;
+    public void NextChapter()
+    {
+        CurrentChapter++;
+        ChapterUI.DOAnchorPos(new Vector2(CurrentChapter * -1920, ChapterUI.anchoredPosition.y), 1);
+    }
+    public void PrevChapter()
+    {
+        CurrentChapter--;
+        ChapterUI.DOAnchorPos(new Vector2(CurrentChapter * -1920, ChapterUI.anchoredPosition.y), 1);
+    }
+
+
+    public RectTransform MainMenu;
+    
+    public void OnCollection()
+    {
+        MainMenu.DOAnchorPos(new Vector2(1920, MainMenu.anchoredPosition.y),1f);
+    }
+
+    public void OnMainBack()
+    {
+        MainMenu.DOAnchorPos(new Vector2(0, MainMenu.anchoredPosition.y),1f);
+    }
+
+    public void OnSetting()
+    {
+        MainMenu.DOAnchorPos(new Vector2(-1920, MainMenu.anchoredPosition.y),1f);
+    }
+    
 }

@@ -18,6 +18,31 @@ public class Puzzle : MonoBehaviour
     {
         _zeroPos = transform.position;
     }
+
+    private void Update()
+    {
+        if (isDrag)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 vector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(vector3.x, vector3.y, transform.position.z);
+            if (Input.GetMouseButtonDown(1))
+            {
+                OnRightClick();
+            }
+            int layerMask2 = 1 << LayerMask.NameToLayer("Grid");
+            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, layerMask2))
+            {
+                transform.position = _hit.collider.transform.position;
+                _grid = _hit.collider.transform.GetComponent<Grid>();
+            }
+            else
+            {
+                _grid = null;
+            }
+        }
+    }
+
     void OnRightClick()
     {
         Debug.Log("Pressed right Click");
@@ -39,36 +64,37 @@ public class Puzzle : MonoBehaviour
         }
     }
     private Grid _grid;
+    
     public void OnMouseDrag()
     {
         if (Camera.main != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawLine(ray.origin, ray.direction * 1000, Color.green);
+            // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Debug.DrawLine(ray.origin, ray.direction * 1000, Color.green);
 
-            int layerMask = 1 << LayerMask.NameToLayer("Puzzle");
-            if (Physics.Raycast(ray, out _hitLayerMask, Mathf.Infinity, layerMask))
-            {
-                var transform1 = transform;
-                float z = transform1.position.z;
-                transform1.position = new Vector3(_hitLayerMask.point.x, _hitLayerMask.point.y, z);
+            // int layerMask = 1 << LayerMask.NameToLayer("Puzzle");
+            // if (Physics.Raycast(ray, out _hitLayerMask, Mathf.Infinity, layerMask))
+            // {
+            //     var transform1 = transform;
+            //     float z = transform1.position.z;
+            //     transform1.position = new Vector3(_hitLayerMask.point.x, _hitLayerMask.point.y, z);
+            //
+            //     if (Input.GetMouseButtonDown(1))
+            //     {
+            //         OnRightClick();
+            //     }
+            // }
 
-                if (Input.GetMouseButtonDown(1))
-                {
-                    OnRightClick();
-                }
-            }
-
-            int layerMask2 = 1 << LayerMask.NameToLayer("Grid");
-            if (Physics.Raycast(ray, out _hit, Mathf.Infinity, layerMask2))
-            {
-                transform.position = _hit.collider.transform.position;
-                _grid = _hit.collider.transform.GetComponent<Grid>();
-            }
-            else
-            {
-                _grid = null;
-            }
+            // int layerMask2 = 1 << LayerMask.NameToLayer("Grid");
+            // if (Physics.Raycast(ray, out _hit, Mathf.Infinity, layerMask2))
+            // {
+            //     transform.position = _hit.collider.transform.position;
+            //     _grid = _hit.collider.transform.GetComponent<Grid>();
+            // }
+            // else
+            // {
+            //     _grid = null;
+            // }
         }
     }
     public bool Evaluate(Grid grid)
@@ -95,6 +121,8 @@ public class Puzzle : MonoBehaviour
         }
         return true;
     }
+
+    private bool isDrag = false;
     public void OnMouseDown()
     {
         if (Camera.main != null)
@@ -103,6 +131,7 @@ public class Puzzle : MonoBehaviour
             int layerMask = 1 << LayerMask.NameToLayer("Puzzle");
             if (Physics.Raycast(ray, out _hitLayerMask, Mathf.Infinity, layerMask))
             {
+                isDrag = true;
                 while (_selectedGrids.Count > 0)
                 {
                     _selectedGrids.Dequeue().status = "O";
@@ -112,6 +141,7 @@ public class Puzzle : MonoBehaviour
     }
     public void OnMouseUp()
     {
+        isDrag = false;
         if (_grid != null)
         {
             if (Evaluate(_grid))
