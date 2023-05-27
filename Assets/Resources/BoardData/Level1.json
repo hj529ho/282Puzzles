@@ -1,8 +1,10 @@
 ﻿{
-  "stage":"2",
+  "stage":"1",
   "size":"3x1",
   "puzzles":[1],
   "board":[
-    "O","O","O"
+    "O",
+    "O",
+    "O"
   ]
 }

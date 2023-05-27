@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3537312399956605770}
   - component: {fileID: 3537312399956605771}
   - component: {fileID: 1426808218768101754}
+  - component: {fileID: 7150990976341350451}
+  - component: {fileID: 4122818270792347484}
   m_Layer: 6
   m_Name: puzzle17
   m_TagString: Untagged
@@ -45,8 +47,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.98369, y: 1.982487, z: 1.32}
-  m_Center: {x: 0.005253911, y: -0.4965774, z: 0}
+  m_Size: {x: 3, y: 1, z: 1.32}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1426808218768101754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +70,32 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+--- !u!65 &7150990976341350451
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537312399956605768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -1, y: -1, z: 0}
+--- !u!65 &4122818270792347484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537312399956605768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 1, y: -1, z: 0}
 --- !u!1 &8314923374079361706
 GameObject:
   m_ObjectHideFlags: 0

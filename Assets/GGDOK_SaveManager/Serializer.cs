@@ -43,6 +43,7 @@ namespace GGDok.SaveManager
             List<string[]> member = new List<string[]>();
 
             type = Type.GetType(splitData[0]);
+            Debug.Log(type.Name);
             obj = Activator.CreateInstance(type);
             fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 

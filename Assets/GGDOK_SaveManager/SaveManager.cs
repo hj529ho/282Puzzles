@@ -17,7 +17,7 @@ namespace GGDok.SaveManager
         
         public void Save(object obj)
         {
-            FileStream test = new FileStream(filePath+"/"+$"{obj.GetType().Name}.ggdok",FileMode.Create);
+            FileStream test = new FileStream($"{filePath}/{obj.GetType().Name}.ggdok", FileMode.Create);
             StreamWriter writer = new StreamWriter(test);
             writer.Write(_serializer.Serialize(obj));
             writer.Close();
@@ -25,8 +25,8 @@ namespace GGDok.SaveManager
         
         public object Load(Type type)
         {
-            string path = filePath + "/" + $"{type.Name}.ggdok";
-            if (File.Exists(path) == false)
+            string path = $"{filePath}/{type.Name}.ggdok";
+            if (!CheckSaveData(type))
             {
                 return null;
             }
@@ -36,8 +36,8 @@ namespace GGDok.SaveManager
 
         public bool CheckSaveData(Type type)
         {
-            string path = filePath + $"{type.Name}.ggdok";
-            return File.Exists(path);
+            // string path = filePath + $"{type.Name}.ggdok";
+            return File.Exists(filePath + $"/{type.Name}.ggdok");
         }
     }
 }

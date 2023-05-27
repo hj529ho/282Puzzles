@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3537312399956605770}
   - component: {fileID: 3537312399956605771}
   - component: {fileID: 1426808218768101754}
+  - component: {fileID: 5157667226315566520}
   m_Layer: 6
   m_Name: puzzle20
   m_TagString: Untagged
@@ -45,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9812026, y: 3.983796, z: 1.32}
-  m_Center: {x: 0.5064976, y: 0.50672734, z: 0}
+  m_Size: {x: 1, y: 4, z: 1.32}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1426808218768101754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +69,19 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+--- !u!65 &5157667226315566520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537312399956605768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1 &6029148357460405210
 GameObject:
   m_ObjectHideFlags: 0

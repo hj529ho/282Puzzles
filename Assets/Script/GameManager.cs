@@ -41,24 +41,42 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    _saveDataPuzzle = (SaveDataPuzzle)_saveManager.Load(typeof(SaveDataPuzzle));
+                    Debug.Log("LoadData");
+                    SaveDataPuzzle dataPuzzle = (SaveDataPuzzle)_saveManager.Load(typeof(SaveDataPuzzle));
+                    _saveDataPuzzle = dataPuzzle;
+                    Debug.Log(dataPuzzle.ClearBoard);
                 }
             }
             return _saveDataPuzzle;
         }
     }
+
+    public Sprite ClearIamge;
+    public Sprite CurrentImage;
+    public Sprite LockedImage;
     void Start()
     {
-        // Main.SetActive(true);
-        // SelectLevel.SetActive(false);
-
-        // foreach (Button button in selectButtons)
-        // {
-        //     button.enabled = false;
-        // }
+        PuzzleLocked();
     }
-    
-    
+
+    public void PuzzleLocked()
+    {
+        for (int i = 0; i < SaveData.ClearBoard; i++)
+        {
+            selectButtons[i].GetComponent<Image>().sprite = ClearIamge;
+            selectButtons[i].GetComponentInChildren<Text>().enabled = true;
+        }
+        for (int i = SaveData.ClearBoard; i < 80; i++)
+        {
+            selectButtons[i].GetComponent<Image>().sprite =LockedImage;
+            selectButtons[i].GetComponentInChildren<Text>().enabled = false;
+        }
+        if (SaveData.ClearBoard < 80)
+        {
+            selectButtons[SaveData.ClearBoard].GetComponent<Image>().sprite = CurrentImage;
+            selectButtons[SaveData.ClearBoard].GetComponentInChildren<Text>().enabled = true;
+        }
+    }
 
     public static GameManager instance;
 
@@ -95,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void LevelSelect(int i)
     {
         Debug.Log(SaveData.ClearBoard);
-        if (SaveData.ClearBoard + 1 != i)
+        if (SaveData.ClearBoard + 1 < i)
         {
             Debug.Log("asdfasdf");
             return;
@@ -108,7 +126,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         currentLevel++;
-        if (currentLevel < 32)
+        if (currentLevel < 81)
         {
             LevelSelect(currentLevel);
         }
@@ -155,8 +173,10 @@ public class GameManager : MonoBehaviour
     {
         if (SaveData.ClearBoard < currentLevel)
         {
-            _saveDataPuzzle =  new SaveDataPuzzle() { ClearBoard = currentLevel, GottenPuzzle = 0 };
+            _saveDataPuzzle.ClearBoard = currentLevel;
             _saveManager.Save(new SaveDataPuzzle() { ClearBoard = currentLevel, GottenPuzzle = 0 });
         }
+
+        PuzzleLocked();
     }
 }

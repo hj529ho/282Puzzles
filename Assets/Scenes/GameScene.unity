@@ -4692,8 +4692,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 401375942}
   - {fileID: 1086262139}
+  - {fileID: 401375942}
   m_Father: {fileID: 1881554680}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5442,7 +5442,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 362103845}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16444,7 +16444,7 @@ RectTransform:
   - {fileID: 1749807921}
   - {fileID: 1442714377}
   m_Father: {fileID: 362103845}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28183,6 +28183,9 @@ MonoBehaviour:
   BGM: {fileID: 278337956}
   SFX: {fileID: 674436587}
   ChapterText: {fileID: 43199041}
+  ClearIamge: {fileID: 21300000, guid: 5e65c62c395f39a46b6410aa784b7bfa, type: 3}
+  CurrentImage: {fileID: 21300000, guid: 5f0c831b4c7d9274e8298d5752d1d6f4, type: 3}
+  LockedImage: {fileID: 21300000, guid: 421332ffeb111894fb38a43e855b4192, type: 3}
   ChapterUI: {fileID: 1412968631}
   MainMenu: {fileID: 1881554680}
 --- !u!1 &2114831882

@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 3537312399956605769}
   - component: {fileID: 3537312399956605771}
   - component: {fileID: 1426808218768101754}
+  - component: {fileID: 4749282097836337342}
   m_Layer: 6
   m_Name: puzzle21
   m_TagString: Untagged
@@ -269,8 +270,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9708676, y: 2.9941301, z: 1.32}
-  m_Center: {x: 1.0013311, y: 1.0015602, z: 0}
+  m_Size: {x: 1, y: 3, z: 1.32}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1426808218768101754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +293,19 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+--- !u!65 &4749282097836337342
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537312399956605768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 0.2}
+  m_Center: {x: 1.5, y: 0, z: 0}
 --- !u!1 &6029148357460405210
 GameObject:
   m_ObjectHideFlags: 0
