@@ -120,6 +120,7 @@ public class Board : MonoBehaviour
     public void Clear()
     {
         Debug.Log($"Clear!! {GameManager.instance.currentLevel}");
+        GameManager.instance.SaveClearData();
         Next.SetActive(true);
     }
 

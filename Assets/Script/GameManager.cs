@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using GGDok.SaveManager;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,29 @@ public class GameManager : MonoBehaviour
 
 
     public Text ChapterText;
+    private SaveManager _saveManager = new SaveManager();
+
+    private SaveDataPuzzle _saveDataPuzzle;
+
+    public SaveDataPuzzle SaveData
+    {
+        get
+        {
+            if (_saveDataPuzzle == null)
+            {
+                if (!_saveManager.CheckSaveData(typeof(SaveDataPuzzle)))
+                {
+                    _saveDataPuzzle = new SaveDataPuzzle() { ClearBoard = 0, GottenPuzzle = 0 };
+                    _saveManager.Save(_saveDataPuzzle);
+                }
+                else
+                {
+                    _saveDataPuzzle = (SaveDataPuzzle)_saveManager.Load(typeof(SaveDataPuzzle));
+                }
+            }
+            return _saveDataPuzzle;
+        }
+    }
     void Start()
     {
         // Main.SetActive(true);
@@ -45,6 +69,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             _soundManager.Init(BGM,SFX);
             _soundManager.Play("BGM",Define.Sound.BGM);
+            _saveManager.Init();
+        
         }
         else
         {
@@ -68,6 +94,12 @@ public class GameManager : MonoBehaviour
     }
     public void LevelSelect(int i)
     {
+        Debug.Log(SaveData.ClearBoard);
+        if (SaveData.ClearBoard + 1 != i)
+        {
+            Debug.Log("asdfasdf");
+            return;
+        }
         Board.Instance.LoadData($"Level{i}");
         currentLevel = i;
         ChapterText.text = $"레벨 {currentLevel}";
@@ -117,5 +149,14 @@ public class GameManager : MonoBehaviour
     public void OnSetting()
     {
         MainMenu.DOAnchorPos(new Vector2(-1920, MainMenu.anchoredPosition.y),1f);
+    }
+
+    public void SaveClearData()
+    {
+        if (SaveData.ClearBoard < currentLevel)
+        {
+            _saveDataPuzzle =  new SaveDataPuzzle() { ClearBoard = currentLevel, GottenPuzzle = 0 };
+            _saveManager.Save(new SaveDataPuzzle() { ClearBoard = currentLevel, GottenPuzzle = 0 });
+        }
     }
 }
