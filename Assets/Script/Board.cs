@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Board : MonoBehaviour
 {
@@ -50,6 +52,22 @@ public class Board : MonoBehaviour
         _pool = GetComponent<ObjectPool>();
         _pool.Init(Grid,100);
     }
+
+    public Image PopupImage;
+    public GameObject Popup;
+    public void PuzzlePopup(int id)
+    {
+        Popup.SetActive(true);
+        GameManager.instance.GottenPuzzle(id);
+        PopupImage.sprite = GameManager.instance.Sprites[id - 1];
+        PopupImage.rectTransform.sizeDelta = new Vector2(PopupImage.sprite.texture.width,PopupImage.sprite.texture.height);
+    }
+
+    public void ClosePuzzlePopup()
+    {
+        Popup.SetActive(false);
+    }
+
     public void LoadData(string filename)
     {
         Next.SetActive(false);
@@ -68,6 +86,10 @@ public class Board : MonoBehaviour
         BoardData data = JsonUtility.FromJson<BoardData>(asset.text);
         foreach (int id in data.puzzles)
         {
+            if (GameManager.instance.SaveData.GottenPuzzle < id)
+            {
+                PuzzlePopup(id);
+            }
             GameObject go = Generator.GenerateById(id);
             _spawnedPuzzle.Add(go);
             go.transform.position = Pivots[parent.childCount-1].transform.position;

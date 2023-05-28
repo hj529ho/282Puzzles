@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     private SaveManager _saveManager = new SaveManager();
 
     private SaveDataPuzzle _saveDataPuzzle;
-
+    public List<Sprite> Sprites;
     public SaveDataPuzzle SaveData
     {
         get
@@ -167,6 +167,12 @@ public class GameManager : MonoBehaviour
     public void OnSetting()
     {
         MainMenu.DOAnchorPos(new Vector2(-1920, MainMenu.anchoredPosition.y),1f);
+    }
+
+    public void GottenPuzzle(int id)
+    {
+        _saveDataPuzzle.GottenPuzzle = id;
+        _saveManager.Save(_saveDataPuzzle);
     }
 
     public void SaveClearData()
