@@ -68,6 +68,12 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+  type: 5
+  s1: {fileID: 21300000, guid: 9503aeb3151dd574ebadb0655a52aaf7, type: 3}
+  s2: {fileID: 21300000, guid: 58b9ab5eb0843b646bab5bc2fe64686b, type: 3}
+  renderer: {fileID: 8527903566205763055}
+  Name: "\uBE75\uB514 \uB77C\uB2C8"
+  Desc: "\uC6B0\uB098 \uD56B\uACE0\uB77C\uB2C8 \uBE75\uB514 \uBCF4\uACE0 \uAC08\uB798?"
 --- !u!1 &8314923374079361706
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,6 +68,13 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+  type: 5
+  s1: {fileID: 21300000, guid: 9642a177024c44140bfe8facdc0cea19, type: 3}
+  s2: {fileID: 21300000, guid: 9642a177024c44140bfe8facdc0cea19, type: 3}
+  renderer: {fileID: 4441734115426929072}
+  Name: "\uD751\uACE0\uB77C\uB2C8"
+  Desc: "\uC8FD\uCC3D\uC744 \uB4E4\uACE0\uC788\uB294 \uAC80\uC740 \uACE0\uB77C\uB2C8.
+    \uB204\uAD70\uAC00\uB97C \uB178\uB824\uBCF4\uACE0 \uC788\uB2E4."
 --- !u!1 &6029148357460405210
 GameObject:
   m_ObjectHideFlags: 0

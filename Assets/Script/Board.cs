@@ -55,12 +55,18 @@ public class Board : MonoBehaviour
 
     public Image PopupImage;
     public GameObject Popup;
+    public Text PopupNameText;
+    public Text PopupDescText;
     public void PuzzlePopup(int id)
     {
         Popup.SetActive(true);
         GameManager.instance.GottenPuzzle(id);
-        PopupImage.sprite = GameManager.instance.Sprites[id - 1];
+        GameManager.instance.CollectionOpen();
+        PopupImage.sprite = GameManager.instance.Icons[id - 1];
         PopupImage.rectTransform.sizeDelta = new Vector2(PopupImage.sprite.texture.width,PopupImage.sprite.texture.height);
+
+        PopupNameText.text = GameManager.instance.Names[id - 1];
+        PopupDescText.text = GameManager.instance.Descs[id - 1];
     }
 
     public void ClosePuzzlePopup()

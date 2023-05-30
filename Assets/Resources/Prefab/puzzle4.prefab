@@ -152,3 +152,10 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+  type: 1
+  s1: {fileID: 21300000, guid: 6670f43f0aa87c342b058f971ed3f4ac, type: 3}
+  s2: {fileID: 21300000, guid: 99e0d8bbd9aec4b2092d20d94e4570cb, type: 3}
+  renderer: {fileID: 2314356051409280766}
+  Name: "\uC2DC\uBB34\uB8E9\uD55C \uAC1C\uC2DD\uC774"
+  Desc: "\uC794\uB729 \uC8FC\uB205\uB4E0 \uAC1C\uC2DD\uC774\uB2E4. \uC720\uC785\uC744
+    \uC0AC\uB791\uC73C\uB85C \uB3CC\uBCF4\uC544\uC8FC\uC790."

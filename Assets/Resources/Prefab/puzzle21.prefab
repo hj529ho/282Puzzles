@@ -293,6 +293,12 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+  type: 0
+  s1: {fileID: 21300000, guid: 51b26e565b6e4c942aa7ab9d2e85412d, type: 3}
+  s2: {fileID: 21300000, guid: 51b26e565b6e4c942aa7ab9d2e85412d, type: 3}
+  renderer: {fileID: 4441734115426929072}
+  Name: "\u3141"
+  Desc: 
 --- !u!65 &4749282097836337342
 BoxCollider:
   m_ObjectHideFlags: 0

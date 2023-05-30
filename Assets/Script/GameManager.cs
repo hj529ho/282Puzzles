@@ -27,7 +27,11 @@ public class GameManager : MonoBehaviour
     private SaveManager _saveManager = new SaveManager();
 
     private SaveDataPuzzle _saveDataPuzzle;
-    public List<Sprite> Sprites;
+    // public List<Sprite> Sprites;
+    public List<Sprite> Icons;
+
+    public List<string> Names;
+    public List<string> Descs;
     public SaveDataPuzzle SaveData
     {
         get
@@ -156,16 +160,20 @@ public class GameManager : MonoBehaviour
     
     public void OnCollection()
     {
+        CollectionOpen();
+        animalAnimator.SetTrigger("Hide");
         MainMenu.DOAnchorPos(new Vector2(1920, MainMenu.anchoredPosition.y),1f);
     }
 
     public void OnMainBack()
     {
+        animalAnimator.SetTrigger("Main");
         MainMenu.DOAnchorPos(new Vector2(0, MainMenu.anchoredPosition.y),1f);
     }
 
     public void OnSetting()
     {
+        animalAnimator.SetTrigger("Hide");
         MainMenu.DOAnchorPos(new Vector2(-1920, MainMenu.anchoredPosition.y),1f);
     }
 
@@ -173,6 +181,28 @@ public class GameManager : MonoBehaviour
     {
         _saveDataPuzzle.GottenPuzzle = id;
         _saveManager.Save(_saveDataPuzzle);
+    }
+
+    public Image CollectionDetailImage;
+
+    public List<Image> Collections;
+
+    public void CollectionOpen()
+    {
+        for (int i = 0; i < SaveData.GottenPuzzle; i++)
+        {
+            Collections[i].sprite = Icons[i];
+        }
+    }
+
+    public void CollectionClick(int id)
+    {
+        if (SaveData.GottenPuzzle < id)
+        {
+            Debug.Log($"Gotteon {SaveData.GottenPuzzle}, id {id}");
+            return;
+        }
+        CollectionDetailImage.sprite = Icons[id - 1];
     }
 
     public void SaveClearData()
@@ -184,5 +214,18 @@ public class GameManager : MonoBehaviour
         }
 
         PuzzleLocked();
+    }
+
+    public RectTransform collectionpage;
+    public void CellctionPage(int i)
+    {
+        if (i == 0)
+        {
+            collectionpage.DOAnchorPos(new Vector2(0,0),1);
+        }
+        else if(i==1)
+        {
+            collectionpage.DOAnchorPos(new Vector2(-892,0),1);
+        }
     }
 }

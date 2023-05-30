@@ -70,6 +70,13 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+  type: 3
+  s1: {fileID: 21300000, guid: 3f7def2009dea4642b8122549ed2dcb0, type: 3}
+  s2: {fileID: 21300000, guid: 3f7def2009dea4642b8122549ed2dcb0, type: 3}
+  renderer: {fileID: 4441734115426929072}
+  Name: "\uC8FC\uC6B1\uD3ED\uB3C4"
+  Desc: "\uBAB8\uC758 \uAE38\uC774\uAC00 \uC8FC~\uC6B1 \uB298\uC5B4\uB09C \uC8FC\uD3ED\uB3C4.
+    \uC5B4\u2197\uB514\u2197\uAE4C\u2197\uC9C0\u2197\uB298\u2197\uC5B4\u2197\uB098\u2197\uB294\u2197\uAC70\u2197\uC5D0\u2197\uC694\u2198?"
 --- !u!65 &2730499405335974807
 BoxCollider:
   m_ObjectHideFlags: 0

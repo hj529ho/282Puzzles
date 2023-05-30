@@ -69,6 +69,14 @@ MonoBehaviour:
     centerX: 0
     centerY: 0
   rotate: 0
+  type: 2
+  s1: {fileID: 21300000, guid: 3307611f4d3d1934486ee7c3a9933a69, type: 3}
+  s2: {fileID: 21300000, guid: 3307611f4d3d1934486ee7c3a9933a69, type: 3}
+  renderer: {fileID: 4441734115426929072}
+  Name: "\uC548\uC544\uC918\uC694 \uBC15\uC950"
+  Desc: "\uD314\uC744 \uD65C\uC9DD \uBC8C\uB9AC\uACE0 \uC788\uB294 \uBC15\uC950.
+    \uB204\uAD70\uAC00 \uC548\uC544\uC8FC\uAE38 \uAE30\uB2E4\uB9AC\uACE0 \uC788\uB2E4.
+    \uC548\uC544\uC870\uC694~"
 --- !u!65 &286308949838874798
 BoxCollider:
   m_ObjectHideFlags: 0

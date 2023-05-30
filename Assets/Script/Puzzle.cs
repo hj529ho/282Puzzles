@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Puzzle : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Puzzle : MonoBehaviour
     private Vector3 _zeroPos;
     private readonly Queue<Grid> _selectedGrids = new Queue<Grid>();
     public Rotate rotate = Rotate._0;
+    public Type type;
+    public Sprite s1;
+    public Sprite s2;
+    public SpriteRenderer renderer;
     private void Start()
     {
         _zeroPos = transform.position;
@@ -26,10 +31,10 @@ public class Puzzle : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 vector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(vector3.x, vector3.y, transform.position.z);
-            if (Input.GetMouseButtonDown(1))
-            {
-                OnRightClick();
-            }
+            // if (Input.GetMouseButtonDown(1))
+            // {
+            //     OnRightClick();
+            // }
             int layerMask2 = 1 << LayerMask.NameToLayer("Grid");
             if (Physics.Raycast(ray, out _hit, Mathf.Infinity, layerMask2))
             {
@@ -131,6 +136,29 @@ public class Puzzle : MonoBehaviour
             int layerMask = 1 << LayerMask.NameToLayer("Puzzle");
             if (Physics.Raycast(ray, out _hitLayerMask, Mathf.Infinity, layerMask))
             {
+                switch (type)
+                {
+                    case Type.dol :
+                        GameManager.instance._soundManager.Play($"VFX/Pigeon_{Random.Range(1,9)}");
+                        break;
+                    case Type.ddong :
+                        GameManager.instance._soundManager.Play($"VFX/Dog_{Random.Range(1,8)}");
+                        break;
+                    case Type.bak :
+                        GameManager.instance._soundManager.Play($"VFX/Bat_{Random.Range(1,4)}");
+                        break;
+                    case Type.ju :
+                        GameManager.instance._soundManager.Play($"VFX/Fox_{Random.Range(1,7)}");
+                        break;
+                    case Type.se :
+                        GameManager.instance._soundManager.Play($"VFX/Cat_{Random.Range(1,4)}");
+                        break;
+                    case Type.go :
+                        GameManager.instance._soundManager.Play($"VFX/Gorani_{Random.Range(1,4)}");
+                        break;
+                }
+
+                renderer.sprite = s2;
                 isDrag = true;
                 while (_selectedGrids.Count > 0)
                 {
@@ -142,6 +170,7 @@ public class Puzzle : MonoBehaviour
     public void OnMouseUp()
     {
         isDrag = false;
+        renderer.sprite = s1;
         if (_grid != null)
         {
             if (Evaluate(_grid))
@@ -168,6 +197,10 @@ public class Puzzle : MonoBehaviour
             {
                 transform.position = _zeroPos;
             }
+        }
+        else
+        {
+            OnRightClick();
         }
     }
 
@@ -203,5 +236,15 @@ public class Puzzle : MonoBehaviour
             default:
                 return data.GridArray;
         }
+    }
+    
+    public enum Type
+    {
+        dol,
+        ddong,
+        bak,
+        ju,
+        se,
+        go
     }
 }
